@@ -1,0 +1,144 @@
+{
+  "type": "object",
+  "properties": {
+    "error": { "type": "array" },
+    "result": {
+      "type": "object",
+      "properties": {
+        "open": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "refid": {
+                "type": ["string", "null"]
+              },
+              "userref": {
+                "type": "number"
+              },
+              "status": {
+                "type": "string",
+                "enum": ["pending", "open", "closed", "canceled", "expired"]
+              },
+              "opentm": {
+                "type": "number"
+              },
+              "starttm": {
+                "type": "number"
+              },
+              "expiretm": {
+                "type": "number"
+              },
+              "descr": {
+                "title": "OrderDescription",
+                "type": "object",
+                "properties": {
+                  "pair": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": ["buy", "sell"]
+                  },
+                  "ordertype": {
+                    "type": "string",
+                    "enum": [
+                      "market",
+                      "limit",
+                      "stop-loss",
+                      "take-profit",
+                      "stop-loss-limit",
+                      "take-profit-limit",
+                      "settle-position"
+                    ]
+                  },
+                  "price": {
+                    "type": "string"
+                  },
+                  "price2": {
+                    "type": "string"
+                  },
+                  "leverage": {
+                    "type": "string"
+                  },
+                  "order": {
+                    "type": "string"
+                  },
+                  "close": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "pair",
+                  "type",
+                  "ordertype",
+                  "price",
+                  "price2",
+                  "leverage",
+                  "order",
+                  "close"
+                ]
+              },
+              "vol": {
+                "type": "string"
+              },
+              "vol_exec": {
+                "type": "string"
+              },
+              "cost": {
+                "type": "string"
+              },
+              "fee": {
+                "type": "string"
+              },
+              "price": {
+                "type": "string"
+              },
+              "stopprice": {
+                "type": "string"
+              },
+              "limitprice": {
+                "type": "string"
+              },
+              "trigger": {
+                "type": "string",
+                "enum": ["last", "index"]
+              },
+              "misc": {
+                "type": "string"
+              },
+              "oflags": {
+                "type": "string"
+              },
+              "trades": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "refid",
+              "userref",
+              "status",
+              "opentm",
+              "starttm",
+              "expiretm",
+              "descr",
+              "vol",
+              "vol_exec",
+              "cost",
+              "fee",
+              "price",
+              "stopprice",
+              "limitprice",
+              "misc",
+              "oflags"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "required": ["result", "error"]
+}

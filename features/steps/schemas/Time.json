@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "error": { "type": "array" },
+    "result": {
+      "type": "object",
+      "properties": {
+        "unixtime": {
+          "type": "integer"
+        },
+        "rfc1123": {
+          "type": "string"
+        }
+      },
+      "required": ["unixtime", "rfc1123"]
+    }
+  },
+  "required": ["result", "error"]
+}

@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+    api_tests:
+        environment:
+            - LOGGING_LEVEL=${LOGGING_LEVEL}
+            - PARALLEL_PROCESSES=${PARALLEL_PROCESSES}
+            - PARALLEL_SCHEME=${PARALLEL_SCHEME}
+            - TAGS=${TAGS}
+            - API_URL=${API_URL}
+            - API_VERSION=${API_VERSION}
+            - KPUBLIC=${KPUBLIC}
+            - KPRIVATE=${KPRIVATE}
+            - KOTP=${KOTP}
+            - CMD=${CMD}
+        build: .
+        volumes:
+            - ./output:/usr/src/app/output
+        command: ${CMD}

@@ -1,0 +1,39 @@
+name: linting and unit testing
+
+on: pull_request
+
+env:
+  API_VERSION: 0
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: docker-compose up --exit-code-from api_tests
+
+  run_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: run tests
+        env:
+          CMD: "./run_tests.sh"
+          API_URL: ${{ secrets.API_URL }}
+          KPUBLIC: ${{ secrets.KPUBLIC }}
+          KPRIVATE: ${{ secrets.KPRIVATE }}
+          KOTP: ${{ secrets.KOTP }}
+        run: CMD="./run_tests.sh" docker-compose up --exit-code-from api_tests
+
+      - name: Archive test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-report
+          path: output
